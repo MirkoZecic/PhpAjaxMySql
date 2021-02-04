@@ -68,30 +68,46 @@ $(document).ready(function () {
             error_startingTime = 'Starting time is required';
             $('#error_startingTime').text(error_startingTime);
             $('#startingTime').css('border-color', '#cc0000');
-        } else if (!(/[0-9]{2}-{0-9}{2}/).test($('#startingTime').val())) {
+        } else if (!(/[0-9]{2}-[0-9]{2}/).test($('#startingTime').val())) {
             error_startingTime = 'Starting time must not contain digits and must be in format 00-00';
             $('#error_startingTime').text(error_startingTime);
             $('#startingTime').css('border-color', '#cc0000');
         }
         else {
-            error_startingTime = '';
-            $('#error_startingTime').text(error_startingTime);
-            $('#startingTime').css('border-color', '');
+            var sat = $('#startingTime').val().substring(0, 2);
+            var minut = $('#startingTime').val().substring(3, 5);
+            if (sat > 23 || minut > 60) {
+                error_startingTime = 'Start time contains impossible time value!';
+                $('#error_startingTime').text(error_startingTime);
+                $('#startingTime').css('border-color', '#cc0000');
+            } else {
+                error_startingTime = '';
+                $('#error_startingTime').text(error_startingTime);
+                $('#startingTime').css('border-color', '');
+            }
         }
         // ending time
         if ($('#endingTime').val() == '') {
             error_endingTime = 'Ending time is required';
             $('#error_endingTime').text(error_endingTime);
             $('#endingTime').css('border-color', '#cc0000');
-        } else if (!(/[0-9]{2}-{0-9}{2}/).test($('#endingTime').val())) {
+        } else if (!(/[0-9]{2}-[0-9]{2}/).test($('#endingTime').val())) {
             error_endingTime = 'Ending time must not contain digits and must be in format 00-00';
             $('#error_endingTime').text(error_endingTime);
             $('#endingTime').css('border-color', '#cc0000');
         }
         else {
-            error_endingTime = '';
-            $('#error_endingTime').text(error_endingTime);
-            $('#endingTime').css('border-color', '');
+            var sat = $('#endingTime').val().substring(0, 2);
+            var minut = $('#endingTime').val().substring(3, 5);
+            if (sat > 23 || minut > 60) {
+                error_endingTime = 'Ending time contains impossible time value!';
+                $('#error_endingTime').text(error_endingTime);
+                $('#endingTime').css('border-color', '#cc0000');
+            } else {
+                error_endingTime = '';
+                $('#error_endingTime').text(error_endingTime);
+                $('#endingTime').css('border-color', '');
+            }
         }
         // description
         if ($('#description').val() == '') {
