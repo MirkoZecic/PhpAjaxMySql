@@ -44,23 +44,23 @@ echo '<h1>Hello ' . $_SESSION['ime'] . ' here is your plan for today.</h1>';
         <form method="post" id="user_form">
             <div class="form-group">
                 <label>Enter Activity Name</label>
-                <input type="text" name="activityName" id="activityName" class="form-control">
+                <input type="text" name="activityName" id="activityName" placeholder="Enter name" class="form-control">
                 <div id="suggesstion-box"></div>
                 <span id="error_activityName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label>Enter Starting Time</label>
-                <input type="text" name="startingTime" id="startingTime" class="form-control">
+                <input type="text" name="startingTime" id="startingTime" placeholder="Enter time in format 00-00" class="form-control">
                 <span id="error_startingTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label>Enter Ending Time</label>
-                <input type="text" name="endingTime" id="endingTime" class="form-control">
+                <input type="text" name="endingTime" id="endingTime" placeholder="Enter time in format 00-00" class="form-control">
                 <span id="error_endingTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <input type="textarea" name="description" id="description" class="form-control">
+                <input type="textarea" name="description" id="description" placeholder="Enter description" class="form-control">
                 <span id="error_description" class="text-danger"></span>
             </div>
             <div class="form-group">

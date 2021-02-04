@@ -68,7 +68,12 @@ $(document).ready(function () {
             error_startingTime = 'Starting time is required';
             $('#error_startingTime').text(error_startingTime);
             $('#startingTime').css('border-color', '#cc0000');
-        } else {
+        } else if (!(/[0-9]{2}-{0-9}{2}/).test($('#startingTime').val())) {
+            error_startingTime = 'Starting time must not contain digits and must be in format 00-00';
+            $('#error_startingTime').text(error_startingTime);
+            $('#startingTime').css('border-color', '#cc0000');
+        }
+        else {
             error_startingTime = '';
             $('#error_startingTime').text(error_startingTime);
             $('#startingTime').css('border-color', '');
@@ -78,7 +83,12 @@ $(document).ready(function () {
             error_endingTime = 'Ending time is required';
             $('#error_endingTime').text(error_endingTime);
             $('#endingTime').css('border-color', '#cc0000');
-        } else {
+        } else if (!(/[0-9]{2}-{0-9}{2}/).test($('#endingTime').val())) {
+            error_endingTime = 'Ending time must not contain digits and must be in format 00-00';
+            $('#error_endingTime').text(error_endingTime);
+            $('#endingTime').css('border-color', '#cc0000');
+        }
+        else {
             error_endingTime = '';
             $('#error_endingTime').text(error_endingTime);
             $('#endingTime').css('border-color', '');

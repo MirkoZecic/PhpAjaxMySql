@@ -23,7 +23,7 @@ class CRUD_Operations
         return self::$instance;
     }
 
-    public static function register($ime, $sifra, $email)
+    public function register($ime, $sifra, $email)
     {
         $sql = "INSERT INTO korisnik (ime,sifra, email) VALUES ('" . $ime . "','" . $sifra . "', '" . $email . "')";
         if (self::$konekcija->query($sql)) {
@@ -36,7 +36,7 @@ class CRUD_Operations
         }
     }
 
-    public static function login($email, $pw)
+    public function login($email, $pw)
     {
         $sql = "SELECT * FROM korisnik WHERE email='" . $email . "' AND sifra='" . $pw . "'";
         if ($q = self::$konekcija->query($sql)) {
@@ -53,7 +53,7 @@ class CRUD_Operations
         }
     }
 
-    public static function selectAll($activityName, $startingTime, $endingTime, $description)
+    public function insert($activityName, $startingTime, $endingTime, $description)
     {
         $aktivnostid = null;
         $sql = "SELECT * FROM aktivnost WHERE NazivAktivnosti='" . $activityName . "'";
@@ -74,7 +74,7 @@ class CRUD_Operations
             echo '<p> There was an error while inserting activity </p>';
         }
     }
-    public static function selectOne($id)
+    public function selectOne($id)
     {
         $query = "SELECT a.NazivAktivnosti as 'aktivnost',r.VremePocetka as 'vremePocetka',r.VremeZavrsetka as 'vremeZavrsetka',r.Opis as 'opis' FROM raspored r join aktivnost a on r.AktivnostId =a.AktivnostId WHERE Id =" . $id;
         $result = self::$konekcija->query($query);
@@ -88,10 +88,7 @@ class CRUD_Operations
         echo json_encode($output);
     }
 
-    public static function insert()
-    {
-    }
-    public static function edit($activityName, $startingTime, $endingTime, $description, $hidden_id)
+    public function edit($activityName, $startingTime, $endingTime, $description, $hidden_id)
     {
         $aktivnostid = null;
         $sql = "SELECT * FROM aktivnost WHERE NazivAktivnosti='" . $activityName . "'";

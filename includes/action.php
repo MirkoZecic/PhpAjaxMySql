@@ -18,7 +18,7 @@ if (isset($_POST['type'])) {
 if (isset($_POST['action'])) {
 
   if ($_POST['action'] == "insert") {
-    CRUD_Operations::getInstance()->selectAll($_POST['activityName'], $_POST['startingTime'], $_POST['endingTime'], $_POST['description']);
+    CRUD_Operations::getInstance()->insert($_POST['activityName'], $_POST['startingTime'], $_POST['endingTime'], $_POST['description']);
     exit();
   }
 
