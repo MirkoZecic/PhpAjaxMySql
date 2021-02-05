@@ -76,7 +76,7 @@ $(document).ready(function () {
         else {
             var sat = $('#startingTime').val().substring(0, 2);
             var minut = $('#startingTime').val().substring(3, 5);
-            if (sat > 23 || minut > 60) {
+            if (sat > 23 || minut > 59) {
                 error_startingTime = 'Start time contains impossible time value!';
                 $('#error_startingTime').text(error_startingTime);
                 $('#startingTime').css('border-color', '#cc0000');
@@ -99,8 +99,12 @@ $(document).ready(function () {
         else {
             var sat = $('#endingTime').val().substring(0, 2);
             var minut = $('#endingTime').val().substring(3, 5);
-            if (sat > 23 || minut > 60) {
+            if (sat > 23 || minut > 59) {
                 error_endingTime = 'Ending time contains impossible time value!';
+                $('#error_endingTime').text(error_endingTime);
+                $('#endingTime').css('border-color', '#cc0000');
+            } else if (!prviPreDrugog()) {
+                error_endingTime = 'End time must be after start time!';
                 $('#error_endingTime').text(error_endingTime);
                 $('#endingTime').css('border-color', '#cc0000');
             } else {
@@ -201,3 +205,15 @@ $(document).on('click', '.delete', function () {
     var id = $(this).attr("id");
     $('#delete_confirmation').data('id', id).dialog('open');
 });
+
+function prviPreDrugog() {
+    var satPrvog = $('#startingTime').val().substring(0, 2);
+    var minutPrvog = $('#startingTime').val().substring(3, 5);
+    var satDrugog = $('#endingTime').val().substring(0, 2);
+    var minutDrugog = $('#endingTime').val().substring(3, 5);
+    console.log(satPrvog + ":" + minutPrvog + "\n" + satDrugog + ":" + minutDrugog);
+    console.log("prvi uslov: " + (satPrvog < satDrugog));
+    console.log("drugi: " + (satPrvog == satDrugog && minutPrvog < minutDrugog));
+    console.log("ceo uslov: " + (satPrvog < satDrugog || (satPrvog == satDrugog && minutPrvog < minutDrugog)));
+    return (satPrvog < satDrugog || (satPrvog == satDrugog && minutPrvog < minutDrugog));
+}
